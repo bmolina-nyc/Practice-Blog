@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :posts, only:[:new, :index, :show]
   end
 
+  post "/logout" => "sessions#destroy", as: :logout
+
   root 'users#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

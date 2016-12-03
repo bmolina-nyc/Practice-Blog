@@ -2,7 +2,7 @@
     <%= flash[:notice] %>
   <% end %>
 
-<h1> Login Page </h1>  #sessions create - you wanna login a user here
+<h1> Login Page </h1> 
 
 <%= form_tag '/sessions', :method => 'post' do %>
   
@@ -14,5 +14,7 @@
 
   <%= submit_tag 'Login' %>
 
-
 <% end %>
+
+<%= link_to "Home", new_user_path(@user) %>
+
