@@ -1,0 +1,18 @@
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+
+<h1> Login Page </h1>  #sessions create - you wanna login a user here
+
+<%= form_tag '/sessions', :method => 'post' do %>
+  
+  <%= label_tag "Username" %>
+  <%= text_field_tag :name %>
+
+  <%= label_tag "Password" %>
+  <%= password_field_tag :password %>
+
+  <%= submit_tag 'Login' %>
+
+
+<% end %>

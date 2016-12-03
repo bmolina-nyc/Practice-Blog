@@ -1,0 +1,18 @@
+<h1> Welcome to the blog! </h1>
+
+
+# lets make this a form to either create a user
+
+<h3>Please Create a User or <%= link_to "Login", new_session_path %> </h3> 
+
+<%= form_tag('/sessions', :method=>'post') do %>
+  <%= label_tag "Enter Your Name" %>
+  <%= text_field_tag :name %>
+
+  <%= label_tag "Enter Password" %> 
+  <%= password_field_tag :password %> 
+
+  <%= label_tag "Confirm Password" %>
+  <%= password_field_tag :password_confirmation %>
+  <%= submit_tag 'Submit' %>
+<% end %>

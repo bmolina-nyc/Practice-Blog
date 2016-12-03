@@ -1,0 +1,8 @@
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+
+<h1> <%= @user.name %> Page </h1>
+
+<h3> Select an Option </h3>
+<%= link_to "Index", users_path %> | <%= link_to "New Post", new_user_post_path(@user) %>

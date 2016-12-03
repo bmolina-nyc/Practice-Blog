@@ -1,0 +1,13 @@
+  <% if @user %>
+    <h1> <%= @user.name %> Posts  </h1>
+  <% else %>
+    <h1> All User Posts </h1>  
+  <% end %>
+
+<ul>
+  <% @posts.each do |post| %>
+  <li> <%= post.name %> 
+       <%= post.content %>
+  </li>
+  <% end %>
+</ul>
