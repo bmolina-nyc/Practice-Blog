@@ -5,14 +5,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    @user = ( User.find_by(id: session[:user_id]) ) || User.new
+    @user = (User.find_by(id: session[:user_id]) ) || User.new
   end
 
   def account_owner
-    if current_user.id != params[:user_id].to_i
+    @post = Post.find_by(id: params[:id])
+    return true if @post.user_id == current_user.id 
+    
+    if params[:user_id]
+      if current_user.id != params[:user_id].to_i 
+        flash[:notice] = "Unable to edit other account data!"
+        redirect_to user_path(current_user)
+      end
+    end
       flash[:notice] = "Unable to edit other account data!"
       redirect_to user_path(current_user)
-    end
   end
 
   def logged_in?

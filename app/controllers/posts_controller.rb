@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
  before_action :must_be_logged_in
  skip_before_action :must_be_logged_in, only: :index
- before_action :account_owner, only: [:new,:show, :update]
+ before_action :account_owner, only: [:new, :show, :update]
 
   def index
     @posts = Post.all
@@ -41,6 +41,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :content, :user_id)
+    params.require(:post).permit(:name, :content, :user_id, category_ids:[])
   end
 end
