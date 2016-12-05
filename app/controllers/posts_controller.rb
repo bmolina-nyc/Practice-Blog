@@ -1,14 +1,10 @@
 class PostsController < ApplicationController
  before_action :must_be_logged_in
+ skip_before_action :must_be_logged_in, only: :index
+ before_action :account_owner, only: [:new,:show, :update]
 
   def index
-    @user = User.find_by(id: params[:user_id])
-
-    if @user
-      @posts = @user.posts
-    else
-      @posts = Post.all
-    end
+    @posts = Post.all
   end
 
   # need logic here whether its random person or a user
@@ -30,9 +26,21 @@ class PostsController < ApplicationController
 
   end
 
+  def show 
+    @post = Post.find_by(id: params[:id])
+  end
+
+  def update
+    @post = current_user.posts.find_by(id: params[:id])
+    @post.update(post_params)
+
+    flash[:notice] = "Post Updated"
+    redirect_to user_posts_path(@user)
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:name, :content, :user_id, :created_at)
+    params.require(:post).permit(:name, :content, :user_id)
   end
 end

@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: [:show, :update]
+  before_action :current_user
+  before_action :must_be_logged_in
+  skip_before_action :must_be_logged_in, only: [:new, :show, :create, :update]
   
   def new
-    @user = User.new  # blank item to wrap the form_for around
+    # don't need the variable here - i've scoped it in the application controller 
   end
 
   def index
@@ -24,14 +26,18 @@ class UsersController < ApplicationController
   end
 
   def show 
+    @user = User.find_by(id: params[:id])
   end
 
+  def update 
+     # don't need the variable here - i've scoped it in the application controller 
+  end
 
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation) 
+    params.require(:user).permit(:name, :id, :password, :password_confirmation) 
   end
 
 end

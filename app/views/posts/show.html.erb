@@ -1,0 +1,20 @@
+<%= form_for @post, url: user_post_path do |f| %>
+
+  <p>
+    <%= f.label :name%>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :content  %>
+    <%= f.text_area :content %>
+  </p>
+
+   <%= f.hidden_field :user_id %>
+
+  <%= f.submit "Update Post" %>
+
+
+<% end %>
+
+

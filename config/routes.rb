@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :show, :create]
 
   resources :users do 
-    resources :posts, only:[:new, :index, :show]
+    resources :posts, only: [:index, :show, :new, :edit, :update]
   end
 
   post "/logout" => "sessions#destroy", as: :logout
