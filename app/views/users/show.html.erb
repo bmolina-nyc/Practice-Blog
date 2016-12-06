@@ -5,4 +5,4 @@
 <h1> <%= @user.name %> Page </h1>
 
 <h3> Select an Option </h3>
-<%= link_to "Index", users_path %> | <%= link_to "New Post", new_user_post_path(@user) %> | <%= link_to "My Posts", user_posts_path(@user) %> | <%= link_to "All Posts", posts_path %> |<%= link_to "Logout", {:action => :destroy, :controller => :sessions}, :method => :post %>
+<%= link_to "Index", users_path %> | <%= link_to "New Post", new_user_post_path(@user) %> | <%= link_to "My Posts", user_posts_path(@user) %> | <%= link_to "All Posts", posts_path %> | <%= link_to "Logout", {:action => :destroy, :controller => :sessions}, :method => :post %>

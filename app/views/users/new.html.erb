@@ -6,7 +6,7 @@
 
 <h3>Please Create a User or <%= link_to "Login", new_session_path %> </h3> 
 
-<%= form_for :user, url: '/users' do |f| %>
+<%= form_for @user, url: '/users' do |f| %>
   <%= f.label "Enter Your Name" %>
   <%= f.text_field :name %>
 

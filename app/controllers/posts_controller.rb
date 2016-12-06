@@ -3,13 +3,21 @@ class PostsController < ApplicationController
  skip_before_action :must_be_logged_in, only: :index
  before_action :account_owner, only: [:new, :show, :update]
 
+
   def index
-    @posts = Post.all
+    @user = User.find_by(id: params[:user_id])
+
+    if @user 
+      @posts = @user.posts 
+    else 
+      @posts = Post.all
+    end
   end
 
   # need logic here whether its random person or a user
   # start with a new post for a user, assumign there is a user
   def new
+
     @user = User.find_by(id: params[:user_id])
     @post = @user.posts.build
   end
@@ -21,7 +29,7 @@ class PostsController < ApplicationController
     if @post.save 
       redirect_to user_posts_path(@user)
     else
-      redirect_to new_user_post_path
+      redirect_to new_user_post_path(@user, @post)
     end
 
   end
@@ -31,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = current_user.posts.find_by(id: params[:id])
+    @post = Post.find_by(id: params[:id])
     @post.update(post_params)
 
     flash[:notice] = "Post Updated"

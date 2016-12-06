@@ -2,7 +2,11 @@
     <%= flash[:notice] %>
   <% end %>
 
-<h1> All User Posts </h1>  
+  <% if @user %>
+    <h1>  <%= @user.name %> posts </h1>
+  <% else %>
+    <h1> All User Posts </h1>  
+  <% end %>
 
 <ul>
 <% @posts.each do |post| %>
@@ -14,3 +18,7 @@
 </ul>
 
 <br>
+
+<% if @user %>
+  <%= link_to "Back", user_path(@user) %>
+<% end %>
